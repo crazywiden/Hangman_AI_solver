@@ -36,3 +36,5 @@ I trained the model using the simulated games generated from the training set (i
 
 
 # Reference
+
+[Training a neural network to play Hangman without a dictionary](https://azure.microsoft.com/en-us/blog/hangman/)
