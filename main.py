@@ -1,9 +1,20 @@
 
+import argpase
 import collections
 import pandas as pd
 import numpy as np
 from model import RNN_model
 import torch
+
+def arg_parser():
+    parser = argparse.ArgumentParser(description="hangman game config")
+    parser.add_argument("--train_path", type=str, default="words_250000_train.txt",
+                        help="path of the train dictionary")
+    parser.add_argument("--lives", type=int, default=6,
+                        help="upper limit of fail guesses")
+    args = parser.parse_args()
+    return args
+
 
 def load_model(model_path):
     model = RNN_model(target_dim=26, hidden_units=16)
@@ -235,6 +246,7 @@ class HangmanGame(object):
         return False
 
 if __name__ == "__main__":
-    train_set = "words_250000_train.txt"
+    args = arg_parser()
+    train_set = args.train_set
     game = HangmanGame(train_set)
-    game.start_game()
+    game.start_game(args.lives)
